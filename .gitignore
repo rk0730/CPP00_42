@@ -3,3 +3,6 @@
 *.a
 a.out
 .vscode
+
+# ex00
+megaphone
