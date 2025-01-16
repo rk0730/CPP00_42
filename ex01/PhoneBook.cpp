@@ -18,19 +18,35 @@ void PhoneBook::display_one_contact(int index) const
 	std::cout << "darkest secret : " << contacts[index].get_darkest_secret() << std::endl;
 }
 
-void PhoneBook::set_contact(int index, std::string first_name, std::string last_name, std::string nickname, std::string phone_number, std::string darkest_secret)
+std::string PhoneBook::user_input(std::string prompt)
 {
-	contacts[index].set_first_name(first_name);
-	contacts[index].set_last_name(last_name);
-	contacts[index].set_nickname(nickname);
-	contacts[index].set_phone_number(phone_number);
-	contacts[index].set_darkest_secret(darkest_secret);
+	std::string input;
+	
+	std::cout << prompt;
+	std::getline(std::cin, input);
+	while (input.empty())
+	{
+		std::cout << "Input cannot be empty" << std::endl;
+		std::cout << prompt;
+		std::getline(std::cin, input);
+	}
+	return input;
+}
+
+void PhoneBook::ADD()
+{
+	std::cout << "Enter all fields of new contact" << std::endl;
+	contacts[0].set_first_name(user_input("first name : "));
+	contacts[0].set_last_name(user_input("last name : "));
+	contacts[0].set_nickname(user_input("nickname : "));
+	contacts[0].set_phone_number(user_input("phone number : "));
+	contacts[0].set_darkest_secret(user_input("darkest secret : "));
 }
 
 int main(void)
 {
 	PhoneBook pb;
-	pb.set_contact(0, "Alice", "Johnson", "AJ", "123-456-7890", "Afraid of clowns");
+	pb.ADD();
 	pb.display_one_contact(0);
 	return 0;
 }
