@@ -11,11 +11,11 @@ void PhoneBook::display_contacts() const
 
 void PhoneBook::display_one_contact(int index) const
 {
-	std::cout << "first name : " << contacts[index].get_first_name() << std::endl;
-	std::cout << "last name : " << contacts[index].get_last_name() << std::endl;
-	std::cout << "nickname : " << contacts[index].get_nickname() << std::endl;
-	std::cout << "phone number : " << contacts[index].get_phone_number() << std::endl;
-	std::cout << "darkest secret : " << contacts[index].get_darkest_secret() << std::endl;
+	std::cout << std::setw(20) << "first name : " << contacts[index].get_first_name() << std::endl;
+	std::cout << std::setw(20) << "last name : " << contacts[index].get_last_name() << std::endl;
+	std::cout << std::setw(20) << "nickname : " << contacts[index].get_nickname() << std::endl;
+	std::cout << std::setw(20) << "phone number : " << contacts[index].get_phone_number() << std::endl;
+	std::cout << std::setw(20) << "darkest secret : " << contacts[index].get_darkest_secret() << std::endl;
 }
 
 std::string PhoneBook::user_input(std::string prompt)
