@@ -9,9 +9,18 @@ void PhoneBook::display_contacts()
 	}
 }
 
+void PhoneBook::display_one_contact(int index)
+{
+	std::cout << "first name : " << contacts[index].get_first_name() << std::endl;
+	std::cout << "last name : " << contacts[index].get_last_name() << std::endl;
+	std::cout << "nickname : " << contacts[index].get_nickname() << std::endl;
+	std::cout << "phone number : " << contacts[index].get_phone_number() << std::endl;
+	std::cout << "darkest secret : " << contacts[index].get_darkest_secret() << std::endl;
+}
+
 int main(void)
 {
 	PhoneBook pb;
-	pb.display_contacts();
+	pb.display_one_contact(0);
 	return 0;
 }

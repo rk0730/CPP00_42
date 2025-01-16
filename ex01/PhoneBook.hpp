@@ -10,6 +10,7 @@ private:
 
 public:
 	void display_contacts();
+	void display_one_contact(int index);
 };
 
 #endif
