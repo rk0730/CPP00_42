@@ -1,5 +1,10 @@
 #include "PhoneBook.hpp"
 
+PhoneBook::PhoneBook()
+{
+	added_count = 0;
+}
+
 void PhoneBook::display_contacts() const
 {
 	std::cout << "Displaying contacts" << std::endl;
@@ -36,11 +41,12 @@ std::string PhoneBook::user_input(std::string prompt)
 void PhoneBook::ADD()
 {
 	std::cout << "Enter all fields of new contact" << std::endl;
-	contacts[0].set_first_name(user_input("first name : "));
-	contacts[0].set_last_name(user_input("last name : "));
-	contacts[0].set_nickname(user_input("nickname : "));
-	contacts[0].set_phone_number(user_input("phone number : "));
-	contacts[0].set_darkest_secret(user_input("darkest secret : "));
+	contacts[added_count % MAX_CONTACTS].set_first_name(user_input("first name : "));
+	contacts[added_count % MAX_CONTACTS].set_last_name(user_input("last name : "));
+	contacts[added_count % MAX_CONTACTS].set_nickname(user_input("nickname : "));
+	contacts[added_count % MAX_CONTACTS].set_phone_number(user_input("phone number : "));
+	contacts[added_count % MAX_CONTACTS].set_darkest_secret(user_input("darkest secret : "));
+	added_count++;
 }
 
 int main(void)
