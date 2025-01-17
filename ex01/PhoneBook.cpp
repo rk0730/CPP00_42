@@ -82,22 +82,26 @@ void PhoneBook::ADD()
 
 void PhoneBook::SEARCH()
 {
-	int index = -1;
+	int index;
 	std::string index_str;
 	display_contacts();
-	while (index < 0 || index >= std::min(added_count, MAX_CONTACTS))
+	while (1)
 	{
 		std::cout << "Enter index of contact to display : ";
 		std::getline(std::cin, index_str);
-		try
+		if (index_str.size() != 1 || !std::isdigit(index_str[0]))
 		{
-			index = std::stoi(index_str);
-			if (index < 0 || index >= added_count)
-				throw std::exception();
+			std::cout << "Invalid index" << std::endl;
+			continue;
 		}
-		catch(const std::exception& e)
+		index = index_str[0] - '0';
+		if (index < 0 || index >= std::min(added_count, MAX_CONTACTS))
 		{
-			std::cerr << "Invalid index" << std::endl;
+			std::cout << "Invalid index" << std::endl;
+		}
+		else
+		{
+			break;
 		}
 	}
 	display_one_contact(index);
