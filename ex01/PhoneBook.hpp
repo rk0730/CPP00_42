@@ -11,13 +11,14 @@ class PhoneBook
 private:
 	Contact contacts[MAX_CONTACTS];
 	int added_count;
+	void display_contacts() const;
 	std::string user_input(std::string prompt);
+	void display_one_contact(int index) const;
 
 public:
 	PhoneBook();
-	void display_contacts() const;
-	void display_one_contact(int index) const;
 	void ADD();
+	void SEARCH();
 };
 
 #endif
