@@ -1,6 +1,11 @@
 #include "Account.hpp"
 #include <iostream>
 
+int Account::_nbAccounts = 0;
+int Account::_totalAmount = 0;
+int Account::_totalNbDeposits = 0;
+int Account::_totalNbWithdrawals = 0;
+
 int Account::getNbAccounts(void)
 {
 	return _nbAccounts;
@@ -43,37 +48,73 @@ Account::Account(int initial_deposit)
 	std::cout << "created" << std::endl;
 }
 Account::~Account(void){
-	
+	_displayTimestamp();
+	_nbAccounts--;
+	std::cout << "index:" << _accountIndex << ";";
+	std::cout << "amount:" << _amount << ";";
+	std::cout << "closed" << std::endl;
 }
 
 void Account::makeDeposit(int deposit)
 {
-	
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";";
+	std::cout << "p_amount:" << _amount << ";";
+	std::cout << "deposit:" << deposit << ";";
+	_amount += deposit;
+	_totalAmount += deposit;
+	std::cout << "amount:" << _amount << ";";
+	_nbDeposits++;
+	_totalNbDeposits++;
+	std::cout << "nb_deposits:" << _nbDeposits << std::endl;
 }
 
 bool Account::makeWithdrawal(int withdrawal)
 {
-	
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";";
+	std::cout << "p_amount:" << _amount << ";";
+	if (checkAmount() < withdrawal)
+	{
+		std::cout << "withdrawal;refused" << std::endl;
+		return false;
+	}
+	std::cout << "withdrawal:" << withdrawal << ";";
+	_amount -= withdrawal;
+	_totalAmount -= withdrawal;
+	std::cout << "amount:" << _amount << ";";
+	_nbWithdrawals++;
+	_totalNbWithdrawals++;
+	std::cout << "nb_withdrawals:" << _nbWithdrawals << std::endl;
+	return true;
 }
 
 int Account::checkAmount(void) const
 {
-	
+	return _amount;
 }
 
 void Account::displayStatus(void) const
 {
-	
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";";
+	std::cout << "amount:" << _amount << ";";
+	std::cout << "deposits:" << _nbDeposits << ";";
+	std::cout << "withdrawals:" << _nbWithdrawals << std::endl;
 }
 
 void Account::_displayTimestamp(void)
 {
-
+	time_t now = time(NULL);
+	tm *ptm = localtime(&now);
+	char str[20];
+	strftime(str, 20, "[%Y%m%d_%H%M%S] ", ptm);
+	std::cout << str;
 }
 
 Account::Account(){
-	_nbAccounts = 0;
-	_totalAmount = 0;
-	_totalNbDeposits = 0;
-	_totalNbWithdrawals = 0;
+	// _nbAccounts = 0;
+	// _totalAmount = 0;
+	// _totalNbDeposits = 0;
+	// _totalNbWithdrawals = 0;
 }
