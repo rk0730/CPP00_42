@@ -32,8 +32,7 @@ void Account::displayAccountsInfos(void)
 	std::cout << "accounts:" << getNbAccounts() << ";";
 	std::cout << "total:" << getTotalAmount() << ";";
 	std::cout << "deposits:" << getNbDeposits() << ";";
-	std::cout << "withdrawals:" << getNbWithdrawals() << ";";
-	std::cout << std::endl;
+	std::cout << "withdrawals:" << getNbWithdrawals() << std::endl;
 }
 
 Account::Account(int initial_deposit)
@@ -47,7 +46,8 @@ Account::Account(int initial_deposit)
 	std::cout << "amount:" << _amount << ";";
 	std::cout << "created" << std::endl;
 }
-Account::~Account(void){
+Account::~Account(void)
+{
 	_displayTimestamp();
 	_nbAccounts--;
 	std::cout << "index:" << _accountIndex << ";";
@@ -76,7 +76,7 @@ bool Account::makeWithdrawal(int withdrawal)
 	std::cout << "p_amount:" << _amount << ";";
 	if (checkAmount() < withdrawal)
 	{
-		std::cout << "withdrawal;refused" << std::endl;
+		std::cout << "withdrawal:refused" << std::endl;
 		return false;
 	}
 	std::cout << "withdrawal:" << withdrawal << ";";
@@ -112,9 +112,11 @@ void Account::_displayTimestamp(void)
 	std::cout << str;
 }
 
-Account::Account(){
-	// _nbAccounts = 0;
-	// _totalAmount = 0;
-	// _totalNbDeposits = 0;
-	// _totalNbWithdrawals = 0;
+Account::Account()
+{
 }
+
+// ./bank > 2025.log
+// cut -d']' -f2- 19920104_091532.log > log1.txt
+// cut -d']' -f2- 2025.log > log2.txt
+// diff log1.txt log2.txt
