@@ -5,6 +5,9 @@ SRCDIR := .
 SRCS += $(SRCDIR)/PhoneBook.cpp
 SRCS += $(SRCDIR)/Contact.cpp
 
+OBJDIR := objs
+OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+
 NAME = phonebook
 
 all: $(NAME)
@@ -12,9 +15,12 @@ all: $(NAME)
 $(NAME): $(SRCS)
 	$(CC) $(CFLAGS) -o $@ $^
 
+clean:
+	rm -rf $(OBJDIR)
+
 fclean:
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all fclean re
+.PHONY: all clean fclean re
