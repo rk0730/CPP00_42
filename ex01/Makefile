@@ -4,6 +4,7 @@ CFLAGS := -std=c++98 -Wall -Wextra -Werror
 SRCDIR := .
 SRCS += $(SRCDIR)/PhoneBook.cpp
 SRCS += $(SRCDIR)/Contact.cpp
+SRCS += $(SRCDIR)/main.cpp
 
 OBJDIR := objs
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
